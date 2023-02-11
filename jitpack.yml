@@ -1,5 +1,2 @@
-before_install:
-  - sdk install 11.0.10-open
-  - sdk use 11.0.10-open
 jdk:
-  - openjdk11
+  - openjdk17
