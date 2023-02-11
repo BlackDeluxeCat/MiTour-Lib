@@ -1,5 +1,5 @@
 apply plugin: "java"
-
+apply plugin: "maven-publish"
 version '1.0'
 
 targetCompatibility = 8
@@ -88,6 +88,21 @@ task deploy(type: Jar){
         delete{
             delete "$buildDir/libs/${project.archivesBaseName}Desktop.jar"
             delete "$buildDir/libs/${project.archivesBaseName}Android.jar"
+        }
+    }
+}
+
+publishing{
+    publications{
+        maven(MavenPublication){
+            version project.version
+            from components.java
+        }
+    }
+    repositories{
+        maven{
+            //指定要上传的maven私服仓库
+            url = "$buildDir/repo"
         }
     }
 }
