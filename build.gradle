@@ -1,6 +1,9 @@
-apply plugin: "java"
-apply plugin: "maven-publish"
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
 version '1.0'
+group = 'com.github.BlackDeluxeCat'
 
 targetCompatibility = 8
 sourceCompatibility = JavaVersion.VERSION_17
@@ -97,11 +100,11 @@ publishing{
         maven(MavenPublication){
             version project.version
             from components.java
+            artifact sourceJar
         }
     }
     repositories{
         maven{
-            //指定要上传的maven私服仓库
             url = "$buildDir/repo"
         }
     }
