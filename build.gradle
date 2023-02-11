@@ -5,8 +5,8 @@ plugins {
 version '1.0'
 group = 'com.github.BlackDeluxeCat'
 
-targetCompatibility = 17
-sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = 1.7
+sourceCompatibility = 1.7
 
 sourceSets.main.java.srcDirs = ["src"]
 
