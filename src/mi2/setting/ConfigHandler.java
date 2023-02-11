@@ -1,35 +1,46 @@
 package mi2.setting;
 
 import arc.*;
+import arc.func.*;
 import arc.scene.event.*;
+import arc.scene.style.*;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import arc.util.serialization.*;
+import mindustry.*;
 import mindustry.game.*;
 import mindustry.mod.*;
 import mindustry.ui.*;
+import mindustry.ui.dialogs.*;
 
-public class JsonConfig{
+public class ConfigHandler{
     protected Mod mod;
     protected JsonValue cfg;
     public boolean changed = false;
-    private String cfgtip = "";
+    /** Tip text when hovering a setting's ui. */
+    public String cfgtip = "";
+    /** Cute Cat-girl Anuke.*/
+    public SettingsMenuDialog.SettingsCategory cat;
 
-    public static JsonConfig request(Mod mod){
-        JsonConfig jc = new JsonConfig();
-        jc.init(mod);
+    /** Init json config handler of a mod. */
+    public static ConfigHandler request(Mod mod){
+        ConfigHandler jc = new ConfigHandler();
+        jc.loadCfg(mod);
+        Events.run(EventType.Trigger.update, () -> {
+            if(jc.changed){
+                jc.saveCfg();
+                jc.changed = false;
+            }
+        });
         return jc;
     }
 
-    public void init(Mod mod){
-        loadCfg(mod);
-        Events.run(EventType.Trigger.update, () -> {
-            if(changed){
-                saveCfg();
-                changed = false;
-            }
-        });
+    public void newSettingsCategory(String name, @Nullable Drawable icon, Cons<SettingsMenuDialog.SettingsTable> builder){
+        if(cat == null){
+            Vars.ui.settings.addCategory(name, icon, builder);
+            cat = Vars.ui.settings.getCategories().find(b -> b.name.equals(name));
+        }
     }
 
     public void loadCfg(Mod mod){
