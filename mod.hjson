@@ -4,7 +4,7 @@ name: "mitour-lib"
 author: "BlackDeluxeCat"
 main: "mi2.MiTourLib"
 description: "MI2's Mindustry Lib Mod. Repo: BlackDeluxeCat/MiTour-Lib"
-version: 0.2
+version: 0.2.1
 minGameVersion: 141
 java: true
 hidden: true
