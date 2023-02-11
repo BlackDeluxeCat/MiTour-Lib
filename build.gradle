@@ -100,7 +100,6 @@ publishing{
         maven(MavenPublication){
             version project.version
             from components.java
-            artifact sourceJar
         }
     }
     repositories{
