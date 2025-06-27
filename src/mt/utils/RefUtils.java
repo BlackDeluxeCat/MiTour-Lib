@@ -1,4 +1,4 @@
-package mi2.utils;
+package mt.utils;
 
 import arc.struct.*;
 
@@ -58,6 +58,7 @@ public class RefUtils{
         if(obj == null || value == null) return;
         try{
             getField(obj.getClass(), name).set(obj, value);
-        }catch(Exception ignored){}
+        }catch(Exception ignored){
+        }
     }
 }

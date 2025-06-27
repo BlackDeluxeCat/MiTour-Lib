@@ -1,4 +1,4 @@
-package mi2.setting;
+package mt.setting;
 
 import arc.*;
 import arc.func.*;
@@ -14,16 +14,23 @@ import mindustry.mod.*;
 import mindustry.ui.*;
 import mindustry.ui.dialogs.*;
 
+@Deprecated
 public class ConfigHandler{
     protected Mod mod;
     protected JsonValue cfg;
     public boolean changed = false;
-    /** Tip text when hovering a setting's ui. */
+    /**
+     * Tip text when hovering a setting's ui.
+     */
     public String cfgtip = "";
-    /** Cute Cat-girl Anuke.*/
+    /**
+     * Cute Cat-girl Anuke.
+     */
     public SettingsMenuDialog.SettingsCategory cat;
 
-    /** Init json config handler of a mod. */
+    /**
+     * Init json config handler of a mod.
+     */
     public static ConfigHandler request(Mod mod){
         ConfigHandler jc = new ConfigHandler();
         jc.loadCfg(mod);
@@ -45,7 +52,7 @@ public class ConfigHandler{
 
     public void loadCfg(Mod mod){
         this.mod = mod;
-        if(mod.getConfig().exists()) {
+        if(mod.getConfig().exists()){
             try{
                 cfg = new JsonReader().parse(mod.getConfig());
             }catch(Exception e){
@@ -78,7 +85,7 @@ public class ConfigHandler{
         return cfg.getInt(name, def);
     }
 
-    public String getstr(String name, String def) {
+    public String getstr(String name, String def){
         return cfg.getString(name, def);
     }
 
@@ -141,7 +148,7 @@ public class ConfigHandler{
     public void fieldi(String name, int def, String text, String tip, Table t, TextField.TextFieldFilter tf, TextField.TextFieldValidator tv){
         if(!cfg.has(name)) puti(name, def);
         t.table(tt -> {
-            tt.field(""+geti(name, def), tf, s -> puti(name, Strings.parseInt(s))).width(100f).get().setValidator(tv);
+            tt.field("" + geti(name, def), tf, s -> puti(name, Strings.parseInt(s))).width(100f).get().setValidator(tv);
             tt.add(text).right();
         }).growX().get().hovered(() -> cfgtip = tip);
         t.row();
@@ -153,7 +160,7 @@ public class ConfigHandler{
         label.touchable = Touchable.disabled;
         var slider = new Slider(min, max, step, false);
         slider.setValue(geti(name, def));
-        t.stack(slider, label).growX().left().minWidth(300f).get().hovered(() -> cfgtip = tip);;
+        t.stack(slider, label).growX().left().minWidth(300f).get().hovered(() -> cfgtip = tip);
         slider.changed(() -> {
             puti(name, (int)slider.getValue());
             label.setText(Core.bundle.get(Strings.replace(new StringBuilder(text), "@", "").toString()) + (int)slider.getValue());

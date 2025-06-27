@@ -1,4 +1,4 @@
-package mi2.utils;
+package mt.utils;
 
 import arc.util.*;
 
