@@ -80,6 +80,10 @@ public class SettingHandler{
         return settings.get(prefix(name), def);
     }
 
+    public <T> T getJson(String name, Class<T> clazz, Prov<T> def){
+        return settings.getJson(name, clazz, def);
+    }
+
     public void putInt(String name, int v){
         settings.put(prefix(name), v);
     }
@@ -90,6 +94,10 @@ public class SettingHandler{
 
     public void putBool(String name, boolean v){
         settings.put(prefix(name), v);
+    }
+
+    public void putJson(String name, Object v){
+        settings.putJson(prefix(name), v);
     }
 
     public static void registerJsonClass(Class<?> clazz){
