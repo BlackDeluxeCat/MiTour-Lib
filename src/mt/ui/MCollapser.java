@@ -28,6 +28,7 @@ public class MCollapser extends WidgetGroup{
         this.table = table;
         this.collapsed = collapsed;
         setTransform(true);
+        table.setClip(true);
 
         updateTouchable();
         addChild(table);
@@ -111,7 +112,7 @@ public class MCollapser extends WidgetGroup{
     public void draw(){
         if(currentHeight > 1 && currentWidth > 1){
             Draw.flush();
-            if(clipBegin(x, y, getWidth(), getHeight())){
+            if(clipBegin()){
                 super.draw();
                 Draw.flush();
                 clipEnd();

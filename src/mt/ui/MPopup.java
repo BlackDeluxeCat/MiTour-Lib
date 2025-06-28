@@ -92,7 +92,7 @@ public class MPopup extends Table{
             @Override
             public void touchDragged(InputEvent event, float x, float y, int pointer){
                 if(cancelDrag) return;
-                localToStageCoordinates(MTmps.v1.set(x, y));
+                localToParentCoordinates(MTmps.v1.set(x, y));
                 setPositionInScreen(MTmps.v1.x - fromx, MTmps.v1.y - fromy);
             }
         });

@@ -107,6 +107,12 @@ public class SettingHandler{
         }
     }
 
+    public static void registerJsonClass(Class<?>... clazzs){
+        for(Class<?> clazz : clazzs){
+            registerJsonClass(clazz);
+        }
+    }
+
     public Title title(String pureName){
         var s = new Title(pureName);
         list.add(s);

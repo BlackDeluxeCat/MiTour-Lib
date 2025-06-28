@@ -16,7 +16,7 @@ public class MTStyles{
         c.margin(6f);
     };
 
-    public static void create(){
+    public static void load(){
 
     }
 }
