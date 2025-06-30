@@ -4,7 +4,7 @@ name: "mitour-lib"
 author: "BlackDeluxeCat"
 main: "mt.MiTourLib"
 description: "MI2's Lib Mod. 界面、IO、渲染工具类，不涉及游戏内容。"
-version: 0.3.0
+version: 0.4.0
 minGameVersion: 149
 java: true
 hidden: true

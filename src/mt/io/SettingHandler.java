@@ -81,7 +81,7 @@ public class SettingHandler{
     }
 
     public <T> T getJson(String name, Class<T> clazz, Prov<T> def){
-        return settings.getJson(name, clazz, def);
+        return settings.getJson(prefix(name), clazz, def);
     }
 
     public void putInt(String name, int v){
